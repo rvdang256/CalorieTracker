@@ -12,7 +12,7 @@ const Navbar2 = () => {
         <NavigationButtonHolder>
           <NavigationElement>Home</NavigationElement>
           <NavigationElement>Exercises</NavigationElement>
-          <NavigationElement>Community</NavigationElement>
+          <NavigationElement>Nutrition</NavigationElement>
           <LoginButton>Login</LoginButton>
         </NavigationButtonHolder>
         
@@ -60,7 +60,7 @@ const NavigationButtonHolder = styled.div`
 const NavigationElement = styled.button`
   padding: 0.5vw; /* Adjusted padding */
   font-family: "Gill Sans", sans-serif;
-  background-color: #f28824; /* Green background color */
+  background-color: #f28824; /* Orange background color */
   border: none;
   font-size:    1vw;
   cursor: pointer;
@@ -68,7 +68,7 @@ const NavigationElement = styled.button`
   border-radius: 0.5vw;
   color: white; /* White text color */
   &:hover {
-    background-color: #388e3c; /* Darker green on hover */
+    background-color: #b6691d; /* Darker orange on hover */
   }
 `;
 

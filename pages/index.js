@@ -18,6 +18,7 @@ const ParentContainer = styled.main`
 const ParentContainer2 = styled.main`
   width: 100vw;
   padding: 0;
+  background-color: #c6f5d0;
 `
 
 const inter = Inter({ subsets: ["latin"] });
@@ -37,11 +38,12 @@ export default function Home() {
       <Homepage/>
       
       </ParentContainer>
+
       <ParentContainer2>
 
         <Images/>
       </ParentContainer2>
-      
+
     </>
   )
 }

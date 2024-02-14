@@ -24,9 +24,6 @@ const Images = () => {
           <FeatureDescription>Keep track of your daily calories and macro-nutrients</FeatureDescription>
         </Feature>
       </FeaturesSection>
-      <Footer>
-        <FooterText>© 2024 Fitness Journey. All rights reserved.</FooterText>
-      </Footer>
     </Container>
   );
 };
@@ -36,8 +33,8 @@ const Header = styled.div`
   display: flex;
   justify-content: center; /* Horizontally center items */
   align-items: center; 
-  margin-top: 60px;
-  margin-bottom: 80px;
+  margin-top: 40px;
+  margin-bottom: 40px;
   width: 100vw;
   font-size: 36px;
 
@@ -63,6 +60,7 @@ const FeaturesSection = styled.section`
   justify-content: space-between;
   margin-top: 50px;
   margin: auto;
+  padding-bottom: 50px;
 `;
 
 const Feature = styled.div`
@@ -85,14 +83,7 @@ const FeatureDescription = styled.p`
   margin-top: 10px;
 `;
 
-const Footer = styled.footer`
-  text-align: center;
-  margin-top: 50px;
-`;
 
-const FooterText = styled.p`
-  color: #666;
-`;
 
 
 

@@ -1,24 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
+import {useState} from 'react';
 
 
 
 
 
 const Homepage = () => {
+
+  const [showLogin, setShowLogin] = useState(true);
+
+  const handleGetStartedClick = () => {
+    setShowLogin(false);
+  };
+
   return (
     <Container>
-        <MainSection>
+        {true && <MainSection>
         
 
             <MainContent>
             <MainTitle>Start Your Journey Today</MainTitle>
             <Subtitle>Join our community and reach your fitness goals</Subtitle>
-            <MainButton>Get Started</MainButton>
+            <MainButton onClick={handleGetStartedClick}>Get Started</MainButton>
             </MainContent>
-            <MainImage src="/weights.jpg" alt="Fitness Journey" />
+            <MainImage src="/fitness.jpg" alt="Fitness Journey" />
 
-      </MainSection>
+        </MainSection>}
 
       
     </Container>
@@ -84,14 +92,13 @@ const Subtitle = styled.p`
 
 const MainButton = styled.button`
   padding: 10px 20px;
-  background-color: #4caf50;
   color: #fff;
   font-size: 18px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   &:hover {
-    background-color: #388e3c;
+    background-color: #0e82d1;
   }
   background-color: #2196f3; /* Blue background color */
   font-family: "Gill Sans", sans-serif;
