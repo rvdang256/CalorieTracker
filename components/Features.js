@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 
-const Images = () => {
+const Features = () => {
   return (
     <Container>
       <Header> What we Offer</Header>
@@ -89,4 +89,4 @@ const FeatureDescription = styled.p`
 
 
 
-export default Images;
+export default Features;

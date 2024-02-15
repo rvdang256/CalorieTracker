@@ -4,7 +4,8 @@ import { Inter } from "next/font/google";
 import styled from "styled-components";
 import Navbar2 from "@/components/Navbar2";
 import Homepage from "@/components/Homepage";
-import Images from "@/components/Images";
+import Features from "@/components/Features";
+import loginInput from "@/components/loginInput";
 
 
 
@@ -12,7 +13,7 @@ const ParentContainer = styled.main`
   width: 100vw;
   background-color: #bccef5;
   padding: 0;
-  height: 90vh;
+  height: 100vh;
 `
 
 const ParentContainer2 = styled.main`
@@ -41,7 +42,8 @@ export default function Home() {
 
       <ParentContainer2>
 
-        <Images/>
+        <Features/>
+        <loginInput/>
       </ParentContainer2>
 
     </>

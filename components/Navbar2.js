@@ -1,7 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
 
 const Navbar2 = () => {
+  const router = useRouter();
+
+  function handleLoginClick() {
+    router.push('/login');
+  }
+
+  function handleHomeClick() {
+
+    router.push('/');
+
+
+  }
+
   return (
     <Container>
       <Holder>
@@ -10,10 +24,10 @@ const Navbar2 = () => {
         </LogoBox>
 
         <NavigationButtonHolder>
-          <NavigationElement>Home</NavigationElement>
+          <NavigationElement onClick={handleHomeClick}>Home</NavigationElement>
           <NavigationElement>Exercises</NavigationElement>
           <NavigationElement>Nutrition</NavigationElement>
-          <LoginButton>Login</LoginButton>
+          <LoginButton onClick={handleLoginClick}>Login</LoginButton>
         </NavigationButtonHolder>
         
       </Holder>
