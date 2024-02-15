@@ -1,7 +1,6 @@
-import { Inter } from "next/font/google";
 import styled from "styled-components";
 import Navbar2 from "@/components/Navbar2";
-import Login2 from "@/components/Login2";
+
 
 
 
@@ -14,11 +13,11 @@ const ParentContainer = styled.main`
 `
 
 
-export default function Login() {
+export default function Nutrition() {
         return (
             <ParentContainer>
                 <Navbar2/>
-                <Login2/>
+                nutrition
             </ParentContainer>
             
         );

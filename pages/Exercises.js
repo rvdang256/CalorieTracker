@@ -14,11 +14,12 @@ const ParentContainer = styled.main`
 `
 
 
-export default function Login() {
+export default function Exercises() {
         return (
             <ParentContainer>
                 <Navbar2/>
-                <Login2/>
+                excer
+
             </ParentContainer>
             
         );

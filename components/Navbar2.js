@@ -14,12 +14,12 @@ const Navbar2 = () => {
 
   }
 
-  function handleLoginClick() {
-    router.push('/login');
+  function handleExerciseClick() {
+    router.push('/Exercises');
   }
 
-  function handleHomeClick() {
-    router.push('/');
+  function handleNutritionClick() {
+    router.push('/Nutrition');
 
   }
 
@@ -32,8 +32,8 @@ const Navbar2 = () => {
 
         <NavigationButtonHolder>
           <NavigationElement onClick={handleHomeClick}>Home</NavigationElement>
-          <NavigationElement>Exercises</NavigationElement>
-          <NavigationElement>Nutrition</NavigationElement>
+          <NavigationElement onClick={handleExerciseClick}>Exercises</NavigationElement>
+          <NavigationElement onClick={handleNutritionClick}>Nutrition</NavigationElement>
           <LoginButton onClick={handleLoginClick}>Login</LoginButton>
         </NavigationButtonHolder>
         
