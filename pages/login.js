@@ -1,9 +1,9 @@
-import Head from "next/head";
-import Image from "next/image";
+
 import { Inter } from "next/font/google";
 import styled from "styled-components";
 import Navbar2 from "@/components/Navbar2";
-import loginInput from "@/components/loginInput";
+import Login2 from "@/components/Login2";
+
 
 
 
@@ -40,7 +40,7 @@ export default function Login() {
         return (
             <ParentContainer>
                 <Navbar2/>
-                <loginInput/>
+                <Login2/>
             </ParentContainer>
             
         );

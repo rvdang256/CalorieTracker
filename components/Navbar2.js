@@ -10,9 +10,16 @@ const Navbar2 = () => {
   }
 
   function handleHomeClick() {
-
     router.push('/');
 
+  }
+
+  function handleLoginClick() {
+    router.push('/login');
+  }
+
+  function handleHomeClick() {
+    router.push('/');
 
   }
 

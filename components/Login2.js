@@ -1,18 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const loginInput = () => {
+const Login2 = () => {
   return (
     <Container>
       <LoginForm>
         <Title>Login</Title>
         <FormGroup>
-          <label htmlFor="email">Email</label>
-          <Input type="email" id="email" />
+          <Input placeholder ="Username" type="text" id="username" name="username" required />
         </FormGroup>
         <FormGroup>
-          <label htmlFor="password">Password</label>
-          <Input type="password" id="password" />
+          <Input placeholder ="Password" type="password" id="password" name="password" required />
         </FormGroup>
         <SubmitButton type="submit">Login</SubmitButton>
       </LoginForm>
@@ -24,15 +22,18 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 90vh;
+  font-family: "Gill Sans", sans-serif;
 `;
 
 const LoginForm = styled.form`
   background-color: white;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(5, 5, 5, 1);
   padding: 40px;
-  width: 300px;
+  width: 350px;
+  height: 220px;
+  align-items: center;
 `;
 
 const Title = styled.h2`
@@ -42,26 +43,24 @@ const Title = styled.h2`
 
 const FormGroup = styled.div`
   margin-bottom: 20px;
+  align-items: center;
 
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
+
 `;
 
 const Input = styled.input`
-  width: 100%;
+  width: 93%;
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 30px;
+  
 `;
 
 const SubmitButton = styled.button`
   width: 100%;
   padding: 10px;
   border: none;
-  border-radius: 4px;
+  border-radius: 1.5vw;
   background-color: #007bff;
   color: white;
   cursor: pointer;
@@ -71,4 +70,4 @@ const SubmitButton = styled.button`
   }
 `;
 
-export default loginInput;
+export default Login2;

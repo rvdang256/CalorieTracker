@@ -5,7 +5,6 @@ import styled from "styled-components";
 import Navbar2 from "@/components/Navbar2";
 import Homepage from "@/components/Homepage";
 import Features from "@/components/Features";
-import loginInput from "@/components/loginInput";
 
 
 
