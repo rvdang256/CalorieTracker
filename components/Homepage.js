@@ -8,25 +8,20 @@ import {useState} from 'react';
 
 const Homepage = () => {
 
-  const [showLogin, setShowLogin] = useState(true);
-
-  const handleGetStartedClick = () => {
-    setShowLogin(false);
-  };
 
   return (
     <Container>
-        {true && <MainSection>
+        <MainSection>
         
 
             <MainContent>
             <MainTitle>Start Your Journey Today</MainTitle>
             <Subtitle>Join our community and reach your fitness goals</Subtitle>
-            <MainButton onClick={handleGetStartedClick}>Get Started</MainButton>
+            <MainButton >Get Started</MainButton>
             </MainContent>
             <MainImage src="/fitness.jpg" alt="Fitness Journey" />
 
-        </MainSection>}
+        </MainSection>
 
       
     </Container>
