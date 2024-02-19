@@ -10,6 +10,7 @@ const SearchBar = () => {
     const [fat, setFat] = useState(0);
     const [sugar, setSugar] = useState(0);
     const [fiber, setFiber] = useState(0);
+    const [sodium, setSodium] = useState(0);
   
 
     async function fetchData() {
@@ -28,6 +29,7 @@ const SearchBar = () => {
         try {
             const response = await axios.request(options);
             setCalorie(calorie + response.data[0].calories);
+            setSodium(sodium + response.data[0].sodium_mg);
             setProtein(protein + response.data[0].protein_g);
             setFat(fat + response.data[0].fat_total_g);
             setFiber(fiber + response.data[0].fiber_g);
@@ -57,12 +59,12 @@ const SearchBar = () => {
           <LoginForm>
 
             <List>
-              <ListItem>calorie: {calorie.toFixed(1)}</ListItem>
-              <ListItem>fat: {fat.toFixed(1)}</ListItem>
-              <ListItem> protein: {protein.toFixed(1)}</ListItem>
-              <ListItem>calorie: {calorie.toFixed(1)}</ListItem>
-              <ListItem>fiber: {fiber.toFixed(1)}</ListItem>
-              <ListItem>sugar: {sugar.toFixed(1)}</ListItem>
+              <ListItem>Total Calories: {calorie.toFixed(1)}</ListItem>
+              <ListItem>Total Fat (g): {fat.toFixed(1)}</ListItem>
+              <ListItem>Total Protein (g): {protein.toFixed(1)}</ListItem>
+              <ListItem>Total Sodium (mg): {sodium.toFixed(1)}</ListItem>
+              <ListItem>Total Fiber (g): {fiber.toFixed(1)}</ListItem>
+              <ListItem>Total Sugar (g): {sugar.toFixed(1)}</ListItem>
 
             
         
@@ -85,6 +87,7 @@ const SearchBar = () => {
     const Heading = styled.h1`
       font-size: 24px;
       margin-bottom: 20px;
+      font-family: "Gill Sans", sans-serif;
     `;
     
     //Spaces out all the componesnts near the search bar

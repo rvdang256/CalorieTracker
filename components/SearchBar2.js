@@ -37,7 +37,7 @@ const SearchBar2 = () => {
   
     return (
         <Container>
-          <Heading>Calorie Counter</Heading>
+          <Heading>Excercise Recommender</Heading>
           <SearchWrapper>
             <DropdownMenu id = "dropdown">
               <Option value="chest">Chest</Option>
@@ -51,7 +51,7 @@ const SearchBar2 = () => {
             </DropdownMenu>
             <SearchButton onClick={fetchData}>Search</SearchButton>
           </SearchWrapper>
-            <LoginForm>
+            <Form length={selectedExercise?.instructions?.length}>
             {data && !selectedExercise && (
                 <List>
                   {data.slice(0, 5).map((exercise, index) => (
@@ -62,15 +62,14 @@ const SearchBar2 = () => {
                 </List>
               )}
 
-            {selectedExercise && (<><><div>{selectedExercise.name}</div>
+            {selectedExercise && (<><><Heading>{selectedExercise.name}</Heading><div>{selectedExercise.instructions}</div>
 
-           
             </>
-            <BackButton onClick={() => setSelectedExercise("")}> Back </BackButton></>
+            <BackButton onClick={() => setSelectedExercise("")}> &#8592; Back </BackButton></>
             )
 
               }          
-            </LoginForm>
+            </Form>
         </Container>
       );
     };
@@ -85,21 +84,25 @@ const SearchBar2 = () => {
 
     const BackButton = styled.h1`
 
-      font-size: 54px;
-      margin-top: 150px;
-    
+      font-size: 15px;
+      margin-top: 200px;
+      color: gray; /* Sets the text color to gray */
+      text-decoration: underline;
+      cursor: pointer;
     `;
     
     const Heading = styled.h1`
+      display: flex;
       font-size: 24px;
       margin-bottom: 20px;
+      margin-top: 40px;
     `;
     
     //Spaces out all the componesnts near the search bar
     const SearchWrapper = styled.div`
     display: flex;
     align-items: center;
-    margin-bottom: 20px; /* Add margin bottom to create space between SearchWrapper and LoginForm */
+    margin-bottom: 20px;
 `;
 
     
@@ -118,15 +121,17 @@ const SearchBar2 = () => {
     `;
     
    
-const LoginForm = styled.form`
+const Form = styled.form`
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(5, 5, 5, 1);
     padding: 40px;
     width: 350px;
-    height: 220px;
+    height: 240px;
+    height: ${(props) => props.length && `${props.length * 20}px`};
     align-items: center;
     margin-left: 20px; /* Add margin left to create space between SearchWrapper and LoginForm */
+    margin-bottom: 100px; /* Add padding bottom to create space between SearchWrapper and LoginForm */
 `;
 
 const DropdownMenu = styled.select`
@@ -155,6 +160,11 @@ const ListItem = styled.li`
   padding: 10px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+
+  &:hover {
+    background-color: #d4e9ff;
+  }
 `;
 
 
