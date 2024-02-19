@@ -43,22 +43,32 @@ const SearchBar = () => {
   
     return (
         <Container>
-          <Heading>Calorie Counter</Heading>
+          <Heading>Nutrition Calculator</Heading>
+          <Subtitle>Enter a food item to get its nutrition information</Subtitle>
           <SearchWrapper>
             <SearchInput
               type="text"
-              placeholder="Search..."
+              placeholder="Type..."
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
             />
-            <SearchButton onClick={fetchData}>Search</SearchButton>
+            <SearchButton onClick={fetchData}>Enter</SearchButton>
           </SearchWrapper>
           <LoginForm>
-            calorie: {calorie.toFixed(1)}
-            fat: {fat.toFixed(1)}
-            protein: {protein.toFixed(1)}
-            sugar: {sugar.toFixed(1)}
-            fiber: {fiber.toFixed(1)}
+
+            <List>
+              <ListItem>calorie: {calorie.toFixed(1)}</ListItem>
+              <ListItem>fat: {fat.toFixed(1)}</ListItem>
+              <ListItem> protein: {protein.toFixed(1)}</ListItem>
+              <ListItem>calorie: {calorie.toFixed(1)}</ListItem>
+              <ListItem>fiber: {fiber.toFixed(1)}</ListItem>
+              <ListItem>sugar: {sugar.toFixed(1)}</ListItem>
+
+            
+        
+
+            </List>
+            
           </LoginForm>
         </Container>
       );
@@ -112,8 +122,40 @@ const LoginForm = styled.form`
     box-shadow: 0 4px 8px rgba(5, 5, 5, 1);
     padding: 40px;
     width: 350px;
-    height: 220px;
+    height: 280px;
     align-items: center;
     margin-left: 20px; /* Add margin left to create space between SearchWrapper and LoginForm */
 `;
+
+const Subtitle = styled.h2`
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+  letter-spacing: 1px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+`;
+
+
+const List = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+`;
+
+
+
+
+const ListItem = styled.li`
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+`;
+
+
+
     export default SearchBar;
