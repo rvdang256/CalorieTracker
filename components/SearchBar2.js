@@ -24,8 +24,9 @@ const SearchBar2 = () => {
         };
 
         try {
-            const response = await axios.request(options);
-            console.log(response.data);            
+            let response = await axios.request(options);
+            console.log(response.data);
+            console.log(response.data == exercise);             
             setData(response.data);
         } catch (error) {
             console.error(error);
@@ -38,19 +39,19 @@ const SearchBar2 = () => {
     return (
         <Container>
           <Heading>Excercise Recommender</Heading>
-          <SearchWrapper>
+          <Wrapper>
             <DropdownMenu id = "dropdown">
               <Option value="chest">Chest</Option>
               <Option value="triceps">Triceps</Option>
               <Option value="quadriceps">Quads</Option>
               <Option value="lower_back">Lower Back</Option>
-              <Option value="upper_back">Upper Back</Option>
+              <Option value="middle_back">Middle Back</Option>
               <Option value="biceps">Biceps</Option>
               <Option value="abdominals">Abs</Option>
               <Option value="calves">Calves</Option>
             </DropdownMenu>
             <SearchButton onClick={fetchData}>Search</SearchButton>
-          </SearchWrapper>
+          </Wrapper>
             <Form length={selectedExercise?.instructions?.length}>
             {data && !selectedExercise && (
                 <List>
@@ -99,7 +100,7 @@ const SearchBar2 = () => {
     `;
     
     //Spaces out all the componesnts near the search bar
-    const SearchWrapper = styled.div`
+    const Wrapper = styled.div`
     display: flex;
     align-items: center;
     margin-bottom: 20px;

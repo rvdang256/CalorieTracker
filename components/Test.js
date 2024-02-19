@@ -1,27 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { useRouter } from 'next/router';
 
-const Login2 = () => {
-  const router = useRouter();
 
-  function handleSignUpClick() {
-    router.push('/signUp');
-  }
+const Test = () => {
   return (
     <Container>
       <LoginForm>
-        <Title>Login</Title>
+        <Title>Sign Up</Title>
+        <FormGroup>
+          <Input placeholder ="First Name" type="text" id="firstName" name="username" required />
+        </FormGroup>
+        <FormGroup>
+          <Input placeholder ="Last Name" type="password" id="lastName" name="password" required />
+        </FormGroup>
         <FormGroup>
           <Input placeholder ="Username" type="text" id="username" name="username" required />
         </FormGroup>
         <FormGroup>
           <Input placeholder ="Password" type="password" id="password" name="password" required />
         </FormGroup>
-        <SubmitButton type="submit">Login</SubmitButton>
+        <SubmitButton type="submit">Sign Up</SubmitButton>
 
-       <BackButton onClick={handleSignUpClick}>Sign Up</BackButton>
       </LoginForm>
     </Container>
   );
@@ -41,7 +41,7 @@ const LoginForm = styled.div`
   box-shadow: 0 4px 8px rgba(5, 5, 5, 1);
   padding: 40px;
   width: 350px;
-  height: 270px;
+  height: 320px;
   align-items: center;
 `;
 
@@ -79,14 +79,5 @@ const SubmitButton = styled.button`
   }
 `;
 
-const BackButton = styled.h1`
 
-font-size: 15px;
-margin-top: 55px;
-margin-left: 280px;
-color: gray; /* Sets the text color to gray */
-text-decoration: underline;
-cursor: pointer;
-`;
-
-export default Login2;
+export default Test;
