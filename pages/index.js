@@ -42,7 +42,7 @@ export default function Home() {
       <ParentContainer2>
 
         <Features/>
-        <loginInput/>
+
       </ParentContainer2>
 
     </>

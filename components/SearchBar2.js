@@ -16,7 +16,7 @@ const SearchBar2 = () => {
         const options = {
         method: 'GET',
         url: 'https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises',
-        params: {muscle: exercise},
+        params: {muscle: document.getElementById("dropdown").value},
         headers: {
           'X-RapidAPI-Key': 'f444a7a15fmshf34e2ddf0108b86p114cabjsn88bcab9ad8e4',
           'X-RapidAPI-Host': 'exercises-by-api-ninjas.p.rapidapi.com'
