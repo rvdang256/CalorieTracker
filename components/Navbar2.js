@@ -6,7 +6,7 @@ const Navbar2 = () => {
   const router = useRouter();
 
   function handleLoginClick() {
-    router.push('/login');
+    router.push('/loginPage');
   }
 
   function handleHomeClick() {

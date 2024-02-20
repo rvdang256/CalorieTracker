@@ -9,17 +9,19 @@ const Features = () => {
       <FeaturesSection>
 
         <Feature>
-          <FeatureIcon src="/weights.jpg" alt="Icon 1" />
+          <FeatureIcon src="/weights.jpg" />
           <FeatureTitle>Personalized Workouts</FeatureTitle>
           <FeatureDescription>Create custom workout plans tailored to your goals</FeatureDescription>
         </Feature>
+
         <Feature>
-          <FeatureIcon src="/salad.jpg" alt="Icon 2" />
+          <FeatureIcon src="/salad.jpg"/>
           <FeatureTitle>Nutritional Guidance</FeatureTitle>
           <FeatureDescription>Access to nutrition plans and healthy recipes</FeatureDescription>
         </Feature>
+        
         <Feature>
-          <FeatureIcon src="/foodScale.jpg" alt="Icon 3" />
+          <FeatureIcon src="/foodScale.jpg"/>
           <FeatureTitle>Food Tracker</FeatureTitle>
           <FeatureDescription>Keep track of your daily calories and macro-nutrients</FeatureDescription>
         </Feature>

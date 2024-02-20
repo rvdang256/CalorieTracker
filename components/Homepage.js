@@ -29,18 +29,7 @@ const Homepage = () => {
 };
 
 
-const Header = styled.div`
-  max-width: 1200px;
-  display: flex;
-  justify-content: center; /* Horizontally center items */
-  align-items: center; 
-  margin-top: 80px;
-  margin-bottom: 80px;
-  width: 100vw;
-  font-size: 36px;
-  background-color: #f5ce58;
 
-`;
 
 const Container = styled.div`
   max-width: 1200px;
@@ -99,50 +88,6 @@ const MainButton = styled.button`
   font-family: "Gill Sans", sans-serif;
 `;
 
-const FeaturesSection = styled.section`
-  display: flex;
 
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 50px;
-  background-color: #f5ce58;
-  margin: auto;
-`;
-
-const Feature = styled.div`
-  flex: 1;
-  text-align: center;
-`;
-
-const FeatureIcon = styled.img`
-  max-width: 50%;
-  max-length: 50%;
-`;
-
-const FeatureTitle = styled.h3`
-  font-size: 24px;
-  margin-top: 20px;
-`;
-
-const FeatureDescription = styled.p`
-  color: #666;
-  margin-top: 10px;
-`;
-
-const Footer = styled.footer`
-  text-align: center;
-  margin-top: 50px;
-`;
-
-const FooterText = styled.p`
-  color: #666;
-`;
-
-const Caption = styled.figcaption`
-    color: red;
-    position: absolute;
-
-
-`
 
 export default Homepage;

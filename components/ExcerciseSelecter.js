@@ -2,17 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import { useState } from 'react';
 import axios from 'axios';
-import Head from 'next/head';
 
-const SearchBar2 = () => {
-    const[exercise, setExercise] = useState('');
+
+const ExcerciseSelecter = () => {
     const[data, setData] = useState(null);
     const [selectedExercise, setSelectedExercise] = useState(null);
-    
 
 
     async function fetchData() {
-        setExercise(document.getElementById("dropdown").value);
+
         const options = {
         method: 'GET',
         url: 'https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises',
@@ -25,8 +23,7 @@ const SearchBar2 = () => {
 
         try {
             let response = await axios.request(options);
-            console.log(response.data);
-            console.log(response.data == exercise);             
+            console.log(response.data);          
             setData(response.data);
         } catch (error) {
             console.error(error);
@@ -52,7 +49,7 @@ const SearchBar2 = () => {
             </DropdownMenu>
             <SearchButton onClick={fetchData}>Search</SearchButton>
           </Wrapper>
-            <Form length={selectedExercise?.instructions?.length}>
+            <Display length={selectedExercise?.instructions?.length}>
             {data && !selectedExercise && (
                 <List>
                   {data.slice(0, 5).map((exercise, index) => (
@@ -70,7 +67,7 @@ const SearchBar2 = () => {
             )
 
               }          
-            </Form>
+            </Display>
         </Container>
       );
     };
@@ -122,7 +119,7 @@ const SearchBar2 = () => {
     `;
     
    
-const Form = styled.form`
+const Display = styled.div`
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(5, 5, 5, 1);
@@ -169,4 +166,4 @@ const ListItem = styled.li`
 `;
 
 
-export default SearchBar2;
+export default ExcerciseSelecter;

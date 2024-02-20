@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import styled from "styled-components";
 import Navbar2 from "@/components/Navbar2";
-import SearchBar2 from "@/components/SearchBar2";
+import ExcerciseSelecter from "@/components/ExcerciseSelecter";
 
 
 
@@ -18,7 +18,7 @@ export default function Exercises() {
         return (
             <ParentContainer>
                 <Navbar2/>
-                <SearchBar2/>
+                <ExcerciseSelecter/>
 
             </ParentContainer>
             
