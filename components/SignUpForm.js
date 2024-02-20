@@ -10,11 +10,6 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  function test(){
-
-    console.log(email)
-    console.log(password)
-  }
   function handleSignUpClick() {
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {

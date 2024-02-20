@@ -49,7 +49,6 @@ const SearchBar = () => {
           <Subtitle>Enter a food item to get its nutrition information</Subtitle>
           <SearchWrapper>
             <SearchInput
-              type="text"
               placeholder="Type..."
               onChange={(e) => setInputText(e.target.value)}
             />
