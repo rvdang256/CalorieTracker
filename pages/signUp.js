@@ -1,4 +1,4 @@
-import { Inter } from "next/font/google";
+
 import styled from "styled-components";
 import Navbar2 from "@/components/Navbar2";
 import SignUpForm from "@/components/SignUpForm";
