@@ -1,25 +1,45 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import { useRouter } from 'next/router';
+import {auth} from '@/library/firebaseConfig.js';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useState } from 'react';
 
 const Login2 = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const router = useRouter();
 
   function handleSignUpClick() {
     router.push('/signUp');
   }
+
+  function handleLoginClick() {
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      // ...
+      console.log(`User ${user.email} is signed in`)
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorMessage)
+    });
+  }
+
   return (
     <Container>
       <LoginForm>
         <Title>Login</Title>
         <FormGroup>
-          <Input placeholder ="Username" type="text" id="username" name="username" required />
+          <Input placeholder ="Username" onChange={(e) => setEmail(e.target.value)}/>
         </FormGroup>
         <FormGroup>
-          <Input placeholder ="Password" type="password" id="password" name="password" required />
+          <Input placeholder ="Password" type = "password" onChange={(e) => setPassword(e.target.value)}/>
         </FormGroup>
-        <SubmitButton type="submit">Login</SubmitButton>
+        <SubmitButton onClick={handleLoginClick}>Login</SubmitButton>
 
        <BackButton onClick={handleSignUpClick}>Sign Up</BackButton>
       </LoginForm>

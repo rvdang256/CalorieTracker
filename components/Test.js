@@ -1,26 +1,54 @@
 import React from 'react';
 import styled from 'styled-components';
+import {auth} from '@/library/firebaseConfig.js';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { useState } from 'react';
 
 
 
 const Test = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  function test(){
+
+    console.log(email)
+    console.log(password)
+  }
+  function handleSignUpClick() {
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      // ...
+      console.log(`User ${user.email} is signed in up`)
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorMessage)
+    });
+
+  }
   return (
     <Container>
       <LoginForm>
         <Title>Sign Up</Title>
         <FormGroup>
-          <Input placeholder ="First Name" type="text" id="firstName" name="username" required />
+          <Input placeholder ="First Name"/>
         </FormGroup>
         <FormGroup>
-          <Input placeholder ="Last Name" type="password" id="lastName" name="password" required />
+          <Input placeholder ="Last Name" />
         </FormGroup>
         <FormGroup>
-          <Input placeholder ="Username" type="text" id="username" name="username" required />
+          <Input placeholder ="Email" onChange={(e) => setEmail(e.target.value)}/>
         </FormGroup>
         <FormGroup>
-          <Input placeholder ="Password" type="password" id="password" name="password" required />
+          <Input placeholder ="Password" type = "password" onChange={(e) => setPassword(e.target.value)}/>
         </FormGroup>
-        <SubmitButton type="submit">Sign Up</SubmitButton>
+
+        
+        <SubmitButton onClick={handleSignUpClick}> Sign Up</SubmitButton>
 
       </LoginForm>
     </Container>

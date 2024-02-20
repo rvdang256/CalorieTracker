@@ -51,7 +51,6 @@ const SearchBar = () => {
             <SearchInput
               type="text"
               placeholder="Type..."
-              value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
             />
             <SearchButton onClick={fetchData}>Enter</SearchButton>
