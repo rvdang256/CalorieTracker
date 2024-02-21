@@ -3,20 +3,29 @@ import styled from 'styled-components';
 import {auth} from '@/library/firebaseConfig.js';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 
 
 const SignUpForm = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const router = useRouter();
 
   function handleSignUpClick() {
+
+    if (email === '' || password === '') {
+      alert('Email and Password cannot be empty')
+      return;
+    }else{
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
       // ...
       console.log(`User ${user.email} is signed in up`)
+      router.push('/loginPage');
+
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -25,6 +34,7 @@ const SignUpForm = () => {
     });
 
   }
+}
   return (
     <Container>
       <SignForm>

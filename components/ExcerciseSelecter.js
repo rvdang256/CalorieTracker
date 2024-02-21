@@ -37,7 +37,7 @@ const ExcerciseSelecter = () => {
         <Container>
           <Heading>Excercise Recommender</Heading>
           <Wrapper>
-            <DropdownMenu id = "dropdown">
+            <DropdownMenu id="dropdown">
               <Option value="chest">Chest</Option>
               <Option value="triceps">Triceps</Option>
               <Option value="quadriceps">Quads</Option>
@@ -49,36 +49,43 @@ const ExcerciseSelecter = () => {
             </DropdownMenu>
             <SearchButton onClick={fetchData}>Search</SearchButton>
           </Wrapper>
-            <Display length={selectedExercise?.instructions?.length}>
-            {data && !selectedExercise && (
-                <List>
-                  {data.slice(0, 5).map((exercise, index) => (
-                    <ListItem key={index} onClick={() => setSelectedExercise(exercise)}>
-                      {exercise.name}
-                    </ListItem>
-                  ))}
-                </List>
-              )}
+          <Display>
+            {data && (
+              <List>
+                {data.slice(0, 5).map((exercise, index) => (
+                  <ListItem key={index} onClick={() => setSelectedExercise(exercise)}>
+                    {exercise.name}
+                  </ListItem>
+                ))}
+              </List>
+            )}
+          </Display>
 
-            {selectedExercise && (<><><Heading>{selectedExercise.name}</Heading><div>{selectedExercise.instructions}</div>
+          <div></div>
+          {selectedExercise && (
 
-            </>
-            <BackButton onClick={() => setSelectedExercise("")}> &#8592; Back </BackButton></>
-            )
+              <>
+              <Heading>
+                {selectedExercise.name}
+              </Heading>
+              <ExerciseInstructions>
+                {selectedExercise.instructions}
+              </ExerciseInstructions>
+              <div></div>
+              </>
 
-              }          
-            </Display>
+          )}
         </Container>
       );
     };
     
-    const Container = styled.div`
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    `;
+    
+      const Container = styled.div`
+        text-align: center;
+        height: 100vh;
+        margin-top: 100px;
+        
+      `;
 
     const BackButton = styled.h1`
 
@@ -91,20 +98,36 @@ const ExcerciseSelecter = () => {
     
     const Heading = styled.h1`
       display: flex;
+      flex-direction: column;
       font-size: 24px;
       margin-bottom: 20px;
-      margin-top: 40px;
+
     `;
+
+    const Heading2 = styled.h1`
+    display: flex;
+    flex-direction: column;
+    font-size: 24px;
+    margin-bottom: 20px;
+
+  `;
+  
     
     //Spaces out all the componesnts near the search bar
     const Wrapper = styled.div`
     display: flex;
+    justify-content: center;
+
     align-items: center;
     margin-bottom: 20px;
 `;
 
+
+  
+
     
     const SearchButton = styled.button`
+    
       padding: 10px 20px;
       border: none;
       border-radius: 4px;
@@ -118,18 +141,24 @@ const ExcerciseSelecter = () => {
       }
     `;
     
-   
+  
+  
 const Display = styled.div`
+    
+    justify-content: center;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(5, 5, 5, 1);
     padding: 40px;
     width: 350px;
     height: 240px;
-    height: ${(props) => props.length && `${props.length * 20}px`};
+    
     align-items: center;
-    margin-left: 20px; /* Add margin left to create space between SearchWrapper and LoginForm */
-    margin-bottom: 100px; /* Add padding bottom to create space between SearchWrapper and LoginForm */
+    
+    margin-left: 35vw;
+    margin-bottom: 35px; 
+    /* Add padding bottom to create space between SearchWrapper and LoginForm */
+
 `;
 
 const DropdownMenu = styled.select`
@@ -163,6 +192,20 @@ const ListItem = styled.li`
   &:hover {
     background-color: #d4e9ff;
   }
+`;
+
+
+const ExerciseInstructions = styled.div`
+    text-align: left;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-top: 10px;
+    color: #333;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 35vw;
 `;
 
 
