@@ -3,14 +3,30 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import axios from 'axios';
 
+
 const SearchBar = () => {
     const [inputText, setInputText] = useState('');
+    const [foodArray, setFoodArray] = useState([]);
     const [calorie, setCalorie] = useState(0);
     const [protein, setProtein] = useState(0);
     const [fat, setFat] = useState(0);
     const [sugar, setSugar] = useState(0);
     const [fiber, setFiber] = useState(0);
     const [sodium, setSodium] = useState(0);
+
+    const [food, setFood] = useState(false);
+    const [startIndex, setStartIndex] = useState(0);
+    const [endIndex, setEndIndex] = useState(5);
+
+                const handleNextClick = () => {
+                  setStartIndex(endIndex);
+                  setEndIndex(endIndex + 5);
+                };
+
+    function getFood() {
+        setFood(!food);
+      
+      }
   
 
     async function fetchData() {
@@ -28,13 +44,18 @@ const SearchBar = () => {
 
         try {
             const response = await axios.request(options);
+            if (response.data.length != 0) {
+              setFoodArray(foodArray.concat([inputText]));
+              
+            }
+
             setCalorie(calorie + response.data[0].calories);
             setSodium(sodium + response.data[0].sodium_mg);
             setProtein(protein + response.data[0].protein_g);
             setFat(fat + response.data[0].fat_total_g);
             setFiber(fiber + response.data[0].fiber_g);
             setSugar(sugar + response.data[0].sugar_g);
-            console.log(response.data[0]);
+
         } catch (error) {
             console.error(error);
         }
@@ -53,9 +74,10 @@ const SearchBar = () => {
               onChange={(e) => setInputText(e.target.value)}
             />
             <SearchButton onClick={fetchData}>Enter</SearchButton>
+            <SearchButton onClick={getFood}>Test</SearchButton>
           </SearchWrapper>
           <ListDisplay>
-
+            {!food&&
             <List>
               <ListItem>Total Calories: {calorie.toFixed(1)}</ListItem>
               <ListItem>Total Fat (g): {fat.toFixed(1)}</ListItem>
@@ -63,8 +85,22 @@ const SearchBar = () => {
               <ListItem>Total Sodium (mg): {sodium.toFixed(1)}</ListItem>
               <ListItem>Total Fiber (g): {fiber.toFixed(1)}</ListItem>
               <ListItem>Total Sugar (g): {sugar.toFixed(1)}</ListItem>
-
             </List>
+            }
+
+            {food && (
+
+
+
+              <><List>
+              {foodArray.slice(startIndex, endIndex).map((food, index) => (
+                <ListItem key={index}>{food}</ListItem>
+              ))}
+            </List>
+            
+            <SearchButton onClick={handleNextClick}>Next</SearchButton></>
+
+            )}
             
           </ListDisplay>
         </Container>

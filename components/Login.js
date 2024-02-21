@@ -21,6 +21,7 @@ const Login = () => {
       const user = userCredential.user;
       // ...
       console.log(`User ${user.email} is signed in`)
+      router.push('/');
     })
     .catch((error) => {
       const errorCode = error.code;
