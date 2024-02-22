@@ -1,10 +1,9 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   reactStrictMode: true,
-  complier: {
-
+  compiler: {
     styledComponents: true,
-
   }
 };
 

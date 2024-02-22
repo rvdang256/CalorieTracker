@@ -81,9 +81,14 @@ const ExcerciseSelecter = () => {
     
     
       const Container = styled.div`
+        display: flex;
+        flex-direction: column;
         text-align: center;
-        height: 100vh;
+        height: auto;
         margin-top: 100px;
+        justify-content: center;
+        align-items: center;
+        
         
       `;
 
@@ -145,7 +150,7 @@ const ExcerciseSelecter = () => {
   
 const Display = styled.div`
     
-    justify-content: center;
+  
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(5, 5, 5, 1);
@@ -153,9 +158,9 @@ const Display = styled.div`
     width: 350px;
     height: 240px;
     
-    align-items: center;
+
     
-    margin-left: 35vw;
+    
     margin-bottom: 35px; 
     /* Add padding bottom to create space between SearchWrapper and LoginForm */
 
@@ -205,7 +210,6 @@ const ExerciseInstructions = styled.div`
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 35vw;
 `;
 
 

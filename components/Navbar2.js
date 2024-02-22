@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
+import { useStateContext } from '@/context/StateContext';
 
 const Navbar2 = () => {
+  
+  const {user} = useStateContext();
   const router = useRouter();
 
   function handleLoginClick() {
@@ -34,7 +37,10 @@ const Navbar2 = () => {
           <NavigationElement onClick={handleHomeClick}>Home</NavigationElement>
           <NavigationElement onClick={handleExerciseClick}>Exercises</NavigationElement>
           <NavigationElement onClick={handleNutritionClick}>Nutrition</NavigationElement>
-          <LoginButton onClick={handleLoginClick}>Login</LoginButton>
+          {user != null ?
+          <div>{user.email}</div>
+          : // no logged in user
+          <LoginButton onClick={handleLoginClick}>Login</LoginButton>}
         </NavigationButtonHolder>
         
       </Holder>

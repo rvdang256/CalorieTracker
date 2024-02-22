@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-
+import { StateContext } from "@/context/StateContext";
 export const GlobalStyle = createGlobalStyle`
 *{
 
@@ -14,7 +14,9 @@ export default function App({ Component, pageProps }) {
   return(
     <>
       <GlobalStyle/>
-      <Component {...pageProps} />
+      <StateContext>
+        <Component {...pageProps} />
+      </StateContext>
     
     </>
 

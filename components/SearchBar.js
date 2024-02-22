@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useState } from 'react';
 import axios from 'axios';
+import { database } from '@/library/firebaseConfig';
+import {collection, doc, getDoc, setDoc} from 'firebase/firestore';
 
 
 const SearchBar = () => {
+
+
     const [inputText, setInputText] = useState('');
     const [foodArray, setFoodArray] = useState([]);
     const [calorie, setCalorie] = useState(0);
@@ -13,21 +17,23 @@ const SearchBar = () => {
     const [sugar, setSugar] = useState(0);
     const [fiber, setFiber] = useState(0);
     const [sodium, setSodium] = useState(0);
+    const [showHistory, setShowHistory] = useState(false);
 
-    const [food, setFood] = useState(false);
-    const [startIndex, setStartIndex] = useState(0);
-    const [endIndex, setEndIndex] = useState(5);
+    const foodCollectionRef = collection(database, "test");
+    const docRef = doc(foodCollectionRef, "rvd5465@psu.edu");
 
-                const handleNextClick = () => {
-                  setStartIndex(endIndex);
-                  setEndIndex(endIndex + 5);
-                };
 
-    function getFood() {
-        setFood(!food);
-      
+    function Test12(){
+      getDoc(docRef).then((docSnap) => {
+        if (docSnap.exists()) {
+          console.log("Document data:", docSnap.data());
+        } else {
+          console.log("No such document!");
+        }
+        }).catch((error) => {
+          console.log("Error getting document:", error);
+        });
       }
-  
 
     async function fetchData() {
         const options = {
@@ -45,8 +51,7 @@ const SearchBar = () => {
         try {
             const response = await axios.request(options);
             if (response.data.length != 0) {
-              setFoodArray(foodArray.concat([inputText]));
-              
+              setFoodArray([...foodArray, inputText]);
             }
 
             setCalorie(calorie + response.data[0].calories);
@@ -60,9 +65,6 @@ const SearchBar = () => {
             console.error(error);
         }
     }
-    
-
-    
   
     return (
         <Container>
@@ -74,10 +76,18 @@ const SearchBar = () => {
               onChange={(e) => setInputText(e.target.value)}
             />
             <SearchButton onClick={fetchData}>Enter</SearchButton>
-            <SearchButton onClick={getFood}>Test</SearchButton>
+            <SearchButton onClick={() => setShowHistory(!showHistory)}>Show Food Entries</SearchButton>
+            <SearchButton onClick={Test12}>Test</SearchButton>
           </SearchWrapper>
           <ListDisplay>
-            {!food&&
+            {showHistory ? 
+            <>
+              {foodArray.map((food, index) => (
+                 <ListItem key={index}>{food}</ListItem>
+              ))}
+              
+            </>
+            : // If showHistory is false, display the foodArray
             <List>
               <ListItem>Total Calories: {calorie.toFixed(1)}</ListItem>
               <ListItem>Total Fat (g): {fat.toFixed(1)}</ListItem>
@@ -88,20 +98,6 @@ const SearchBar = () => {
             </List>
             }
 
-            {food && (
-
-
-
-              <><List>
-              {foodArray.slice(startIndex, endIndex).map((food, index) => (
-                <ListItem key={index}>{food}</ListItem>
-              ))}
-            </List>
-            
-            <SearchButton onClick={handleNextClick}>Next</SearchButton></>
-
-            )}
-            
           </ListDisplay>
         </Container>
       );
@@ -160,6 +156,7 @@ const ListDisplay = styled.form`
     height: 280px;
     align-items: center;
     margin-left: 20px; /* Add margin left to create space between SearchWrapper and LoginForm */
+    overflow: auto; /* Add overflow property for scrollability */
 `;
 
 const Subtitle = styled.h2`
@@ -181,7 +178,7 @@ const List = styled.ul`
 
 
 
-const ListItem = styled.li`
+const ListItem = styled.div`
   margin-bottom: 10px;
   font-size: 16px;
   color: #333;

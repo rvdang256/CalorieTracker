@@ -1,13 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
-
-
+import { useStateContext } from '@/context/StateContext';
+import { useRouter } from 'next/router';
 
 
 
 
 const Homepage = () => {
+  const router = useRouter();
 
+  const {user} = useStateContext();
+  function handleButtonClick() {
+    if (user != null) {
+      router.push('/Exercises');
+    }else{
+    router.push('/loginPage');
+  }
+
+}
 
   return (
     <Container>
@@ -17,7 +27,7 @@ const Homepage = () => {
             <MainContent>
             <MainTitle>Start Your Journey Today</MainTitle>
             <Subtitle>Join our community and reach your fitness goals</Subtitle>
-            <MainButton >Get Started</MainButton>
+            <MainButton onClick={handleButtonClick}>Get Started</MainButton>
             </MainContent>
             <MainImage src="/fitness.jpg" alt="Fitness Journey" />
 

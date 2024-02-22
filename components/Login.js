@@ -4,8 +4,11 @@ import { useRouter } from 'next/router';
 import {auth} from '@/library/firebaseConfig.js';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
+import { useStateContext } from '@/context/StateContext';
 
 const Login = () => {
+
+  const { setUser } = useStateContext();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const router = useRouter();
@@ -20,6 +23,7 @@ const Login = () => {
       // Signed in 
       const user = userCredential.user;
       // ...
+      setUser(user)
       console.log(`User ${user.email} is signed in`)
       router.push('/');
     })
