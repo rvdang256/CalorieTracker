@@ -18,11 +18,19 @@ const Navbar2 = () => {
   }
 
   function handleExerciseClick() {
-    router.push('/Exercises');
+    if (user != null) {
+    router.push('/Exercises');}
+    else{
+      router.push('/loginPage');
+    }
   }
 
   function handleNutritionClick() {
-    router.push('/Nutrition');
+    if (user != null) {
+    router.push('/Nutrition');}
+    else{
+      router.push('/loginPage');
+    }
 
   }
 

@@ -4,10 +4,11 @@ import { useState } from 'react';
 import axios from 'axios';
 import { database } from '@/library/firebaseConfig';
 import {collection, doc, getDoc, setDoc} from 'firebase/firestore';
+import { useStateContext } from '@/context/StateContext';
 
 
 const SearchBar = () => {
-
+    const {user} = useStateContext();
 
     const [inputText, setInputText] = useState('');
     const [foodArray, setFoodArray] = useState([]);
@@ -20,7 +21,7 @@ const SearchBar = () => {
     const [showHistory, setShowHistory] = useState(false);
 
     const foodCollectionRef = collection(database, "test");
-    const docRef = doc(foodCollectionRef, "rvd5465@psu.edu");
+    const docRef = doc(foodCollectionRef, user.email);
 
 
     function Test12(){
