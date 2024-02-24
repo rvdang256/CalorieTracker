@@ -8,8 +8,12 @@ import { useStateContext } from '@/context/StateContext';
 
 
 const SearchBar = () => {
+    const currentDate = new Date().toLocaleDateString();
+    const [date, setDate] = useState(currentDate);
+    
     const {user} = useStateContext();
 
+    const [data, setData] = useState('');
     const [inputText, setInputText] = useState('');
     const [foodArray, setFoodArray] = useState([]);
     const [calorie, setCalorie] = useState(0);
@@ -23,17 +27,50 @@ const SearchBar = () => {
     const foodCollectionRef = collection(database, "test");
     const docRef = doc(foodCollectionRef, user.email);
 
-
-    function Test12(){
+    useEffect(() => {
       getDoc(docRef).then((docSnap) => {
         if (docSnap.exists()) {
-          console.log("Document data:", docSnap.data());
+          const data = docSnap.data();
+          setData(data);
+          if (data[currentDate] == null) {
+            let newDocData = {[currentDate]: {foodArray: [], macroNutrients: [0, 0, 0, 0, 0, 0]}}
+            const concatenatedObject = { ...data, ...newDocData };
+            setDoc(docRef, concatenatedObject);
+            console.log("Document data:", concatenatedObject);
+          }
+
         } else {
           console.log("No such document!");
         }
         }).catch((error) => {
           console.log("Error getting document:", error);
         });
+    }, [])
+    function Test12(){
+      getDoc(docRef).then((docSnap) => {
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          setData(data);
+
+          console.log("Document data:", data[document.getElementById("dropdown").value]);
+        } else {
+          console.log("No such document!");
+        }
+        }).catch((error) => {
+          console.log("Error getting document:", error);
+        });
+      }
+
+      function onChange(){
+        const foodEntry = data[document.getElementById("dropdown").value]
+        setDate(document.getElementById("dropdown").value)
+        setFoodArray(foodEntry['foodArray']);
+        setCalorie(foodEntry["macroNutrients"][0]);
+        setFat(foodEntry["macroNutrients"][1]);
+        setProtein(foodEntry["macroNutrients"][2]);
+        setSodium(foodEntry["macroNutrients"][3]);
+        setFiber(foodEntry["macroNutrients"][4]);
+        setSugar(foodEntry["macroNutrients"][5]);
       }
 
     async function fetchData() {
@@ -53,14 +90,36 @@ const SearchBar = () => {
             const response = await axios.request(options);
             if (response.data.length != 0) {
               setFoodArray([...foodArray, inputText]);
-            }
+              
+              setCalorie(calorie + response.data[0].calories);
+              setSodium(sodium + response.data[0].sodium_mg);
+              setProtein(protein + response.data[0].protein_g);
+              setFat(fat + response.data[0].fat_total_g);
+              setFiber(fiber + response.data[0].fiber_g);
+              setSugar(sugar + response.data[0].sugar_g);
 
-            setCalorie(calorie + response.data[0].calories);
-            setSodium(sodium + response.data[0].sodium_mg);
-            setProtein(protein + response.data[0].protein_g);
-            setFat(fat + response.data[0].fat_total_g);
-            setFiber(fiber + response.data[0].fiber_g);
-            setSugar(sugar + response.data[0].sugar_g);
+              const updatedCalorie = calorie + response.data[0].calories;
+              const updatedSodium = sodium + response.data[0].sodium_mg;
+              const updatedProtein = protein + response.data[0].protein_g;
+              const updatedFat = fat + response.data[0].fat_total_g;
+              const updatedFiber = fiber + response.data[0].fiber_g;
+              const updatedSugar = sugar + response.data[0].sugar_g;
+
+              let boof = {
+                [currentDate]: {
+                  foodArray: [...foodArray, inputText],
+                  macroNutrients: [updatedCalorie, updatedFat, updatedProtein, updatedSodium, updatedFiber, updatedSugar]
+                }
+              };
+
+              console.log(boof);
+              let test = { ...data, ...boof };
+              setDoc(docRef, test)
+              console.log("Document data:", test);
+              
+            }else{
+              alert("No data found for this food item")
+            }
 
         } catch (error) {
             console.error(error);
@@ -72,14 +131,29 @@ const SearchBar = () => {
           <Heading>Nutrition Calculator</Heading>
           <Subtitle>Enter a food item to get its nutrition information</Subtitle>
           <SearchWrapper>
-            <SearchInput
-              placeholder="Type..."
-              onChange={(e) => setInputText(e.target.value)}
-            />
-            <SearchButton onClick={fetchData}>Enter</SearchButton>
+            {date == currentDate && (
+              <>
+                <SearchInput
+                  placeholder="Type..."
+                  onChange={(e) => setInputText(e.target.value)}
+                />
+                <SearchButton onClick={fetchData}>Enter</SearchButton>
+              </>
+            )}
+            
             <SearchButton onClick={() => setShowHistory(!showHistory)}>Show Food Entries</SearchButton>
             <SearchButton onClick={Test12}>Test</SearchButton>
           </SearchWrapper>
+          <DropdownMenu id = "dropdown"onChange={onChange}>
+          
+              <Option value="Select a date">Select a date</Option>
+
+            {Object.keys(data).map((key, index) => (
+              <Option key={index} value={key}>{key}</Option>
+            ))}
+            
+
+          </DropdownMenu>
           <ListDisplay>
             {showHistory ? 
             <>
@@ -167,6 +241,16 @@ const Subtitle = styled.h2`
   letter-spacing: 1px;
   font-weight: bold;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+`;
+
+const DropdownMenu = styled.select`
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+`;
+
+const Option = styled.option`
+  padding: 10px;
 `;
 
 
