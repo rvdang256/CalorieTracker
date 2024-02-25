@@ -12,7 +12,8 @@ const SearchBar = () => {
     const [date, setDate] = useState(currentDate);
     
     const {user} = useStateContext();
-
+    
+    const [showDateOption, setShowDateOption] = useState(true);
     const [data, setData] = useState('');
     const [inputText, setInputText] = useState('');
     const [foodArray, setFoodArray] = useState([]);
@@ -43,6 +44,7 @@ const SearchBar = () => {
         } else {
           let newDocData = {[currentDate]: {foodArray: [], macroNutrients: [0, 0, 0, 0, 0, 0]}}
           setDoc(docRef, newDocData);
+          setData(newDocData);
           console.log("No such document!");
         }
         }).catch((error) => {
@@ -52,6 +54,7 @@ const SearchBar = () => {
 
 
       function onChange(){
+        setShowDateOption(false);
         const foodEntry = data[document.getElementById("dropdown").value]
         setDate(document.getElementById("dropdown").value)
         setFoodArray(foodEntry['foodArray']);
@@ -135,7 +138,7 @@ const SearchBar = () => {
           </SearchWrapper>
           <DropdownMenu id = "dropdown"onChange={onChange}>
           
-              <Option value="Select a date">Select a date</Option>
+              {showDateOption && <Option value="Select a date">Select a date</Option>}
 
             {Object.keys(data).map((key, index) => (
               <Option key={index} value={key}>{key}</Option>

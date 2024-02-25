@@ -5,8 +5,14 @@ import { useStateContext } from '@/context/StateContext';
 
 const Navbar2 = () => {
   
-  const {user} = useStateContext();
+  const {user, setUser} = useStateContext();
   const router = useRouter();
+
+  function handleSignOutClick(){
+    setUser(null);
+    router.push('/');
+
+  }
 
   function handleLoginClick() {
     router.push('/loginPage');
@@ -42,9 +48,14 @@ const Navbar2 = () => {
         </LogoBox>
 
         <NavigationButtonHolder>
+        
+          
+          
           <NavigationElement onClick={handleHomeClick}>Home</NavigationElement>
           <NavigationElement onClick={handleExerciseClick}>Exercises</NavigationElement>
           <NavigationElement onClick={handleNutritionClick}>Nutrition</NavigationElement>
+          {user && 
+          <LoginButton onClick={handleSignOutClick}>Sign Out</LoginButton>}
           {user != null ?
           <div>{user.email}</div>
           : // no logged in user

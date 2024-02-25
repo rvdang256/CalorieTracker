@@ -31,6 +31,7 @@ const SignUpForm = () => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorMessage)
+      alert("Email already in use")
     });
 
   }
