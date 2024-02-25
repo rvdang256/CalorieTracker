@@ -25,7 +25,7 @@ const SearchBar = () => {
     const [showHistory, setShowHistory] = useState(false);
 
     const foodCollectionRef = collection(database, "test");
-    const docRef = doc(foodCollectionRef, user.email);
+    const docRef = user ? doc(foodCollectionRef, user.email) : doc(foodCollectionRef, "anonymous");
 
     useEffect(() => {
       getDoc(docRef).then((docSnap) => {
@@ -37,29 +37,19 @@ const SearchBar = () => {
             const concatenatedObject = { ...data, ...newDocData };
             setDoc(docRef, concatenatedObject);
             console.log("Document data:", concatenatedObject);
+            setData(concatenatedObject);
           }
 
         } else {
+          let newDocData = {[currentDate]: {foodArray: [], macroNutrients: [0, 0, 0, 0, 0, 0]}}
+          setDoc(docRef, newDocData);
           console.log("No such document!");
         }
         }).catch((error) => {
           console.log("Error getting document:", error);
         });
     }, [])
-    function Test12(){
-      getDoc(docRef).then((docSnap) => {
-        if (docSnap.exists()) {
-          const data = docSnap.data();
-          setData(data);
 
-          console.log("Document data:", data[document.getElementById("dropdown").value]);
-        } else {
-          console.log("No such document!");
-        }
-        }).catch((error) => {
-          console.log("Error getting document:", error);
-        });
-      }
 
       function onChange(){
         const foodEntry = data[document.getElementById("dropdown").value]
@@ -142,7 +132,6 @@ const SearchBar = () => {
             )}
             
             <SearchButton onClick={() => setShowHistory(!showHistory)}>Show Food Entries</SearchButton>
-            <SearchButton onClick={Test12}>Test</SearchButton>
           </SearchWrapper>
           <DropdownMenu id = "dropdown"onChange={onChange}>
           
@@ -236,17 +225,20 @@ const ListDisplay = styled.form`
 
 const Subtitle = styled.h2`
   font-size: 18px;
+  font-family: "Gill Sans", sans-serif;
   margin-bottom: 10px;
   color: #333;
   letter-spacing: 1px;
   font-weight: bold;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  font
 `;
 
 const DropdownMenu = styled.select`
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  margin-bottom: 20px;
 `;
 
 const Option = styled.option`
