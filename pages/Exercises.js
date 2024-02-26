@@ -11,6 +11,7 @@ const ParentContainer = styled.main`
   width: 100vw;
   padding: 0;
   height: 100vh;
+  font-family: "Gill Sans", sans-serif;
 `
 
 

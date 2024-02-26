@@ -90,17 +90,10 @@ const ExcerciseSelecter = () => {
         align-items: center;
         
         
+        
+        
       `;
 
-    const BackButton = styled.h1`
-
-      font-size: 15px;
-      margin-top: 200px;
-      color: gray; /* Sets the text color to gray */
-      text-decoration: underline;
-      cursor: pointer;
-    `;
-    
     const Heading = styled.h1`
       display: flex;
       flex-direction: column;
