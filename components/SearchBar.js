@@ -8,7 +8,7 @@ import { useStateContext } from '@/context/StateContext';
 
 
 const SearchBar = () => {
-    const currentDate = new Date().toLocaleDateString();
+    const currentDate = "2/19/2024"
     const [date, setDate] = useState(currentDate);
     
     const {user} = useStateContext();
@@ -100,17 +100,18 @@ const SearchBar = () => {
               const updatedFiber = fiber + response.data[0].fiber_g;
               const updatedSugar = sugar + response.data[0].sugar_g;
 
-              let boof = {
+              let updatedEntry = {
                 [currentDate]: {
                   foodArray: [...foodArray, inputText],
                   macroNutrients: [updatedCalorie, updatedFat, updatedProtein, updatedSodium, updatedFiber, updatedSugar]
                 }
               };
 
-              console.log(boof);
-              let test = { ...data, ...boof };
-              setDoc(docRef, test)
-              console.log("Document data:", test);
+              console.log(updatedEntry);
+              let updatedDocument = { ...data, ...updatedEntry };
+              setData(updatedDocument)
+              setDoc(docRef, updatedDocument)
+              
               
             }else{
               alert("No data found for this food item")
