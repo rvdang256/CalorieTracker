@@ -26,9 +26,10 @@ const SearchBar = () => {
     const [showHistory, setShowHistory] = useState(false);
 
     const foodCollectionRef = collection(database, "test");
-    const docRef = doc(foodCollectionRef, user.email);
-
+    
     useEffect(() => {
+      const docRef = doc(foodCollectionRef, user.email);
+
       getDoc(docRef).then((docSnap) => {
         if (docSnap.exists()) {
           const data = docSnap.data();
