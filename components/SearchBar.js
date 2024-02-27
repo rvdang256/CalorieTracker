@@ -25,7 +25,7 @@ const SearchBar = () => {
     const [sodium, setSodium] = useState(0);
     const [showHistory, setShowHistory] = useState(false);
 
-    const foodCollectionRef = collection(database, "test");
+    const foodCollectionRef = collection(database, "foodCollection");
     
     useEffect(() => {
       const docRef = doc(foodCollectionRef, user.email);
@@ -68,6 +68,7 @@ const SearchBar = () => {
       }
 
     async function fetchData() {
+        const docRef = doc(foodCollectionRef, user.email);
         const options = {
         method: 'GET',
         url: 'https://nutrition-by-api-ninjas.p.rapidapi.com/v1/nutrition',
