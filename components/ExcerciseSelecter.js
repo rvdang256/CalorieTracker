@@ -61,7 +61,7 @@ const ExcerciseSelecter = () => {
             )}
           </Display>
 
-          <div></div>
+     
           {selectedExercise && (
 
               <>
@@ -102,14 +102,6 @@ const ExcerciseSelecter = () => {
 
     `;
 
-    const Heading2 = styled.h1`
-    display: flex;
-    flex-direction: column;
-    font-size: 24px;
-    margin-bottom: 20px;
-
-  `;
-  
     
     //Spaces out all the componesnts near the search bar
     const Wrapper = styled.div`
@@ -129,7 +121,7 @@ const ExcerciseSelecter = () => {
       padding: 10px 20px;
       border: none;
       border-radius: 4px;
-      background-color: #007bff;
+      background-color: #12a9e0;
       color: white;
       cursor: pointer;
       margin-left: 10px;

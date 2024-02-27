@@ -26,7 +26,7 @@ const SearchBar = () => {
     const [showHistory, setShowHistory] = useState(false);
 
     const foodCollectionRef = collection(database, "test");
-    const docRef = user ? doc(foodCollectionRef, user.email) : doc(foodCollectionRef, "anonymous");
+    const docRef = doc(foodCollectionRef, user.email);
 
     useEffect(() => {
       getDoc(docRef).then((docSnap) => {
@@ -122,7 +122,7 @@ const SearchBar = () => {
     return (
         <Container>
           <Heading>Nutrition Calculator</Heading>
-          <Subtitle>Enter a food item to get its nutrition information</Subtitle>
+          <Subtitle>Keep track of your daily calories and macros</Subtitle>
           <SearchWrapper>
             {date == currentDate && (
               <>
@@ -175,7 +175,8 @@ const SearchBar = () => {
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      height: auto;
+      margin-top: 100px;
     `;
     
     const Heading = styled.h1`
@@ -202,7 +203,7 @@ const SearchBar = () => {
       padding: 10px 20px;
       border: none;
       border-radius: 4px;
-      background-color: #007bff;
+      background-color: #12a9e0;
       color: white;
       cursor: pointer;
       margin-left: 10px;
@@ -221,8 +222,7 @@ const ListDisplay = styled.form`
     padding: 40px;
     width: 350px;
     height: 280px;
-    align-items: center;
-    margin-left: 20px; /* Add margin left to create space between SearchWrapper and LoginForm */
+    align-items: center; 
     overflow: auto; /* Add overflow property for scrollability */
 `;
 
@@ -234,7 +234,7 @@ const Subtitle = styled.h2`
   letter-spacing: 1px;
   font-weight: bold;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-  font
+  margin-bottom: 20px;
 `;
 
 const DropdownMenu = styled.select`

@@ -57,7 +57,7 @@ const Navbar2 = () => {
           {user && 
           <LoginButton onClick={handleSignOutClick}>Sign Out</LoginButton>}
           {user != null ?
-          <div>{user.email}</div>
+          <User>{user.email}</User>
           : // no logged in user
           <LoginButton onClick={handleLoginClick}>Login</LoginButton>}
         </NavigationButtonHolder>
@@ -76,6 +76,14 @@ const Container = styled.div`
   padding-top: 1.5vw;
   padding-bottom: 1.5vw;
   background-color: #f5f5f5; /* Light gray background */
+`;
+
+const User = styled.div`
+font-size: 1vw;
+font-weight: bold;
+font-family: "Inter", Helvetica, Arial, -apple-system, sans-serif;
+color: #12a9e0; /* Dark gray text color */
+  
 `;
 
 const Holder = styled.div`

@@ -10,7 +10,7 @@ import Features from "@/components/Features";
 
 const ParentContainer = styled.main`
   width: 100vw;
-  background-color: #bccef5;
+  background-color: #12a9e0;
   padding: 0;
   height: 100vh;
 `
@@ -18,7 +18,8 @@ const ParentContainer = styled.main`
 const ParentContainer2 = styled.main`
   width: 100vw;
   padding: 0;
-  background-color: #c6f5d0;
+  background-color: #97f095;
+  height: auto;
 `
 
 const inter = Inter({ subsets: ["latin"] });

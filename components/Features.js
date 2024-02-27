@@ -11,14 +11,9 @@ const Features = () => {
         <Feature>
           <FeatureIcon src="/weights.jpg" />
           <FeatureTitle>Personalized Workouts</FeatureTitle>
-          <FeatureDescription>Create custom workout plans tailored to your goals</FeatureDescription>
+          <FeatureDescription>Get recommended workout plans tailored to your goals</FeatureDescription>
         </Feature>
 
-        <Feature>
-          <FeatureIcon src="/salad.jpg"/>
-          <FeatureTitle>Nutritional Guidance</FeatureTitle>
-          <FeatureDescription>Access to nutrition plans and healthy recipes</FeatureDescription>
-        </Feature>
         
         <Feature>
           <FeatureIcon src="/foodScale.jpg"/>
@@ -39,11 +34,13 @@ const Header = styled.div`
   margin-bottom: 40px;
   width: 100vw;
   font-size: 36px;
+  
 
 `;
 
 const Container = styled.div`
   max-width: 1200px;
+  height: auto;
   margin: 0 auto;
   padding: 20px;
   width: 100vw;
