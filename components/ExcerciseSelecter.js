@@ -8,7 +8,7 @@ const ExcerciseSelecter = () => {
     const[data, setData] = useState(null);
     const [selectedExercise, setSelectedExercise] = useState(null);
 
-
+    //Calls the API to get the data
     async function fetchData() {
 
         const options = {
@@ -50,7 +50,10 @@ const ExcerciseSelecter = () => {
             <SearchButton onClick={fetchData}>Search</SearchButton>
           </Wrapper>
           <Display>
-            {data && (
+            
+            {
+            //If data is not null, then display the list of exercises
+            data && (
               <List>
                 {data.slice(0, 5).map((exercise, index) => (
                   <ListItem key={index} onClick={() => setSelectedExercise(exercise)}>
@@ -62,7 +65,9 @@ const ExcerciseSelecter = () => {
           </Display>
 
      
-          {selectedExercise && (
+          {
+          //If selectedExercise is not null, then display the exercise instructions
+          selectedExercise && (
 
               <>
               <Heading>
@@ -71,7 +76,7 @@ const ExcerciseSelecter = () => {
               <ExerciseInstructions>
                 {selectedExercise.instructions}
               </ExerciseInstructions>
-              <div></div>
+
               </>
 
           )}

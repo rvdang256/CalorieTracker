@@ -8,7 +8,7 @@ import { useStateContext } from '@/context/StateContext';
 
 
 const SearchBar = () => {
-    const currentDate = "2/19/2024"
+    const currentDate = new Date().toLocaleDateString();
     const [date, setDate] = useState(currentDate);
     
     const {user} = useStateContext();
@@ -26,7 +26,8 @@ const SearchBar = () => {
     const [showHistory, setShowHistory] = useState(false);
 
     const foodCollectionRef = collection(database, "foodCollection");
-    
+
+    //Get the data from the database first time the page is rendered
     useEffect(() => {
       const docRef = doc(foodCollectionRef, user.email);
 
@@ -35,6 +36,7 @@ const SearchBar = () => {
           const data = docSnap.data();
           setData(data);
           if (data[currentDate] == null) {
+            //If the current date is not in the database, add it
             let newDocData = {[currentDate]: {foodArray: [], macroNutrients: [0, 0, 0, 0, 0, 0]}}
             const concatenatedObject = { ...data, ...newDocData };
             setDoc(docRef, concatenatedObject);
@@ -43,6 +45,7 @@ const SearchBar = () => {
           }
 
         } else {
+          // doc.data() will be undefined in this case and we create a new document
           let newDocData = {[currentDate]: {foodArray: [], macroNutrients: [0, 0, 0, 0, 0, 0]}}
           setDoc(docRef, newDocData);
           setData(newDocData);
@@ -53,7 +56,7 @@ const SearchBar = () => {
         });
     }, [])
 
-
+      //When the date is changed, update the foodArray and the macroNutrients
       function onChange(){
         setShowDateOption(false);
         const foodEntry = data[document.getElementById("dropdown").value]
@@ -67,6 +70,7 @@ const SearchBar = () => {
         setSugar(foodEntry["macroNutrients"][5]);
       }
 
+      //Fetch the data from the API
     async function fetchData() {
         const docRef = doc(foodCollectionRef, user.email);
         const options = {
@@ -83,6 +87,7 @@ const SearchBar = () => {
 
         try {
             const response = await axios.request(options);
+            //If the data is not empty, add the food item to the foodArray and update the macroNutrients
             if (response.data.length != 0) {
               setFoodArray([...foodArray, inputText]);
               
@@ -127,7 +132,9 @@ const SearchBar = () => {
           <Heading>Nutrition Calculator</Heading>
           <Subtitle>Keep track of your daily calories and macros</Subtitle>
           <SearchWrapper>
-            {date == currentDate && (
+            {
+            //If the date is the current date, display the input field and the enter button
+            date == currentDate && (
               <>
                 <SearchInput
                   placeholder="Type..."
@@ -141,7 +148,9 @@ const SearchBar = () => {
           </SearchWrapper>
           <DropdownMenu id = "dropdown"onChange={onChange}>
           
-              {showDateOption && <Option value="Select a date">Select a date</Option>}
+              {//If the date is not the current date, display the date option
+              
+              showDateOption && <Option value="Select a date">Select a date</Option>}
 
             {Object.keys(data).map((key, index) => (
               <Option key={index} value={key}>{key}</Option>

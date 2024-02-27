@@ -10,6 +10,7 @@ const Homepage = () => {
   const router = useRouter();
 
   const {user} = useStateContext();
+  //Either go to the login page or the exercises page if the user is logged in
   function handleButtonClick() {
     if (user != null) {
       router.push('/Exercises');

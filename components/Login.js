@@ -16,7 +16,7 @@ const Login = () => {
   function handleSignUpClick() {
     router.push('/signUp');
   }
-
+  //Sign in with email and password
   function handleLoginClick() {
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
