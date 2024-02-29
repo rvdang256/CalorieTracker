@@ -211,20 +211,7 @@ const SearchBar = () => {
       border-radius: 4px;
     `;
     
-    const SearchButton = styled.button`
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      background-color: #12a9e0;
-      color: white;
-      cursor: pointer;
-      margin-left: 10px;
     
-      &:hover {
-        background-color: #0056b3;
-      }
-      
-    `;
     
    
 const ListDisplay = styled.form`
@@ -281,5 +268,39 @@ const ListItem = styled.div`
 `;
 
 
+const SearchButton = styled.button`
+  --b: 3px;   /* border thickness */
+  --s: .15em; /* size of the corner */
+  --c: #12a9e0;
+  
+  padding: 10px 20px;
+  color: var(--c);
+  --_p: var(--s);
+  background:
+    conic-gradient(from 90deg at var(--b) var(--b), #0000 90deg, var(--c) 0)
+    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+  transition: .3s linear, color 0s, background-color 0s;
+  outline: var(--b) solid #0000;
+  outline-offset: .2em;
+  font-family: system-ui, sans-serif;
+  font-weight: bold;
+
+  cursor: pointer;
+  border: none;
+  margin: .1em;
+  margin-left: 10px;
+
+  &:hover,
+  &:focus-visible {
+    --_p: 0px;
+    outline-color: var(--c);
+    outline-offset: .05em;
+  }
+
+  &:active {
+    background: var(--c);
+    color: #fff;
+  }
+`;
 
   export default SearchBar;

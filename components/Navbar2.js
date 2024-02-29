@@ -48,8 +48,7 @@ const Navbar2 = () => {
         </LogoBox>
 
         <NavigationButtonHolder>
-        
-          
+
           
           <NavigationElement onClick={handleHomeClick}>Home</NavigationElement>
           <NavigationElement onClick={handleExerciseClick}>Exercises</NavigationElement>
@@ -111,34 +110,73 @@ const NavigationButtonHolder = styled.div`
 
 `;
 
+
+
+const LoginButton = styled.button`
+--c: #E95A49; /* the color*/
+--_g: linear-gradient(var(--c) 0 0) no-repeat;
+background: 
+  var(--_g) calc(var(--_p,0%) - 100%) 0%,
+  var(--_g) calc(200% - var(--_p,0%)) 0%,
+  var(--_g) calc(var(--_p,0%) - 100%) 100%,
+  var(--_g) calc(200% - var(--_p,0%)) 100%;
+background-size: 50.5% calc(var(--_p,0%)/2 + .5%);
+outline-offset: .1em;
+transition: background-size .4s, background-position 0s .4s;
+
+font-family: system-ui, sans-serif;
+font-size: 1vw;
+cursor: pointer;
+padding: 0.75vw ;
+font-weight: bold;
+border: none;
+box-shadow: 0 0 0 .1em inset var(--c);
+
+&:hover {
+  --_p: 100%;
+  transition: background-position .4s, background-size 0s;
+}
+
+&:active {
+  box-shadow: 0 0 9e9q inset #0009;
+  background-color: var(--c);
+  color: #fff;
+}
+`;
+
+
+
 const NavigationElement = styled.button`
-  padding: 0.5vw; /* Adjusted padding */
-  font-family: "Gill Sans", sans-serif;
-  background-color: #f28824; /* Orange background color */
-  border: none;
-  font-size:    1vw;
+  --c: #229091; /* the color*/
+  --_g: linear-gradient(var(--c) 0 0) no-repeat;
+  background: 
+    var(--_g) calc(var(--_p,0%) - 100%) 0%,
+    var(--_g) calc(200% - var(--_p,0%)) 0%,
+    var(--_g) calc(var(--_p,0%) - 100%) 100%,
+    var(--_g) calc(200% - var(--_p,0%)) 100%;
+  background-size: 50.5% calc(var(--_p,0%)/2 + .5%);
+  outline-offset: .1em;
+  transition: background-size .4s, background-position 0s .4s;
+
+  font-family: system-ui, sans-serif;
+  font-size: 1vw;
   cursor: pointer;
-  transition: 0.3s ease all;
-  border-radius: 0.5vw;
-  color: white; /* White text color */
+  padding: 0.75vw ;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0 0 0 .1em inset var(--c);
+
   &:hover {
-    background-color: #b6691d; /* Darker orange on hover */
+    --_p: 100%;
+    transition: background-position .4s, background-size 0s;
+  }
+
+  &:active {
+    box-shadow: 0 0 9e9q inset #0009;
+    background-color: var(--c);
+    color: #fff;
   }
 `;
 
-const LoginButton = styled.button`
-  padding: 0.75vw ; /* Adjusted padding */
-  background-color: #2196f3; /* Blue background color */
-  font-family: "Gill Sans", sans-serif;
-  border: none;
-  font-size: 1.25vw;
-  cursor: pointer;
-  transition: 0.3s ease all;
-  border-radius: 1.5vw; /* Increased border-radius for more rounded corners */
-  color: white; /* White text color */
-  &:hover {
-    background-color: #0e82d1; /* Darker blue on hover */
-  }
-`;
 
 export default Navbar2;
