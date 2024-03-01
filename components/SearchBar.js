@@ -10,7 +10,7 @@ import { useStateContext } from '@/context/StateContext';
 const SearchBar = () => {
     const currentDate = new Date().toLocaleDateString();
     const [date, setDate] = useState(currentDate);
-    
+    const [buttonText, setButtonText] = useState("Show Food Entries");
     const {user} = useStateContext();
     
     const [showDateOption, setShowDateOption] = useState(true);
@@ -144,7 +144,12 @@ const SearchBar = () => {
               </>
             )}
             
-            <SearchButton onClick={() => setShowHistory(!showHistory)}>Show Food Entries</SearchButton>
+            <SearchButton onClick={() => {
+              setShowHistory(!showHistory);
+              setButtonText(!showHistory ? "Show Macro Information" : "Show Food Entries");
+            }}>
+              {buttonText}
+            </SearchButton>
           </SearchWrapper>
           <DropdownMenu id = "dropdown"onChange={onChange}>
           

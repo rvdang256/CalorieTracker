@@ -112,37 +112,6 @@ const NavigationButtonHolder = styled.div`
 
 
 
-const LoginButton = styled.button`
---c: #E95A49; /* the color*/
---_g: linear-gradient(var(--c) 0 0) no-repeat;
-background: 
-  var(--_g) calc(var(--_p,0%) - 100%) 0%,
-  var(--_g) calc(200% - var(--_p,0%)) 0%,
-  var(--_g) calc(var(--_p,0%) - 100%) 100%,
-  var(--_g) calc(200% - var(--_p,0%)) 100%;
-background-size: 50.5% calc(var(--_p,0%)/2 + .5%);
-outline-offset: .1em;
-transition: background-size .4s, background-position 0s .4s;
-
-font-family: system-ui, sans-serif;
-font-size: 1vw;
-cursor: pointer;
-padding: 0.75vw ;
-font-weight: bold;
-border: none;
-box-shadow: 0 0 0 .1em inset var(--c);
-
-&:hover {
-  --_p: 100%;
-  transition: background-position .4s, background-size 0s;
-}
-
-&:active {
-  box-shadow: 0 0 9e9q inset #0009;
-  background-color: var(--c);
-  color: #fff;
-}
-`;
 
 
 
@@ -176,6 +145,14 @@ const NavigationElement = styled.button`
     background-color: var(--c);
     color: #fff;
   }
+
+  &.Login {
+    color: yellow; /* Change the color to your desired value */
+  }
+`;
+
+const LoginButton = styled(NavigationElement)`
+  --c: #E95A49; 
 `;
 
 
